@@ -32,7 +32,7 @@ class ConnectC2XViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupUI()
+        self.setupUI() 
     }
     
     private func setupUI() {
