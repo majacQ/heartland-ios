@@ -5,6 +5,7 @@
 #import "NSObject+ObjectMap.h"
 #import "HpsUpaDeviceSignatureResponse.h"
 #import "UpaEnums.h"
+#import "GatewayException.h"
 
 @implementation HpsUpaDevice
 
@@ -48,6 +49,38 @@
     }];
 }
 
+-(void) upaPing:(void (^)(id<IHPSDeviceResponse> payload))responseBlock
+{
+    [self ping:^(id<IHPSDeviceResponse> payload, NSError *error) {
+        if (error) {
+            responseBlock(nil);
+        } else {
+            responseBlock(payload);
+        }
+    }];
+}
+
+-(void) upaAppRestart:(void (^)(id<IHPSDeviceResponse> payload))responseBlock
+{
+    [self restart:^(id<IHPSDeviceResponse>payload, NSError *error) {
+        if (error) {
+            responseBlock(nil);
+        } else {
+            responseBlock(payload);
+        }
+    }];
+}
+
+-(void) upaRebootDevice:(void (^)(id<IHPSDeviceResponse> payload))responseBlock
+{
+    [self reboot:^(id<IHPSDeviceResponse>payload, NSError *error) {
+        if (error) {
+            responseBlock(nil);
+        } else {
+            responseBlock(payload);
+        }
+    }];
+}
 /// method to force close communication early
 /// should only be used during administrative
 /// commands like pings (and not transaction requests)
@@ -121,12 +154,56 @@
     HpsUpaRequest* request = [[HpsUpaRequest alloc] init];
     request.message = @"MSG";
     request.data = [[HpsUpaCommandData alloc] init];
-    request.data.command = @"Ping";
+    request.data.command = UPA_MSG_ID_toString[ UPA_MSG_ID_PING ];
     request.data.EcrId = @"13";
     request.data.requestId = @"123";
 
     id<IHPSDeviceMessage> data = [HpsTerminalUtilities BuildRequest:request.JSONString withFormat:format];
+    NSLog(@"request json = \n  : %@", [request JSONString]);
+    [self.interface send:data andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
+        if (error) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                responseBlock(nil, error);
+            });
+            return;
+        }
 
+        //done
+        NSString *dataview = [data toString];
+        NSLog(@"response json = \n  : %@", dataview);
+        HpsUpaResponse *response;
+
+        @try {
+            //parse data
+
+            response = [[HpsUpaResponse alloc]initWithJSONDoc:data];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                responseBlock(response, nil);
+            });
+        } @catch (NSException *exception) {
+            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [exception description]};
+            NSError *error = [NSError errorWithDomain:self->errorDomain
+                                                 code:CocoaError
+                                             userInfo:userInfo];
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+                responseBlock(nil, error);
+            });
+        }
+    }];
+}
+
+- (void) restart:(void(^)(id <IHPSDeviceResponse>, NSError*))responseBlock
+{
+    HpsUpaRequest* request = [[HpsUpaRequest alloc] init];
+    request.message = @"MSG";
+    request.data = [[HpsUpaCommandData alloc] init];
+    request.data.command = UPA_MSG_ID_toString[ UPA_MSG_ID_RESTART ];
+    request.data.EcrId = @"13";
+    request.data.requestId = @"123";
+
+    id<IHPSDeviceMessage> data = [HpsTerminalUtilities BuildRequest:request.JSONString withFormat:format];
+    NSLog(@"request json = \n  : %@", [request JSONString]);
     [self.interface send:data andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -178,7 +255,7 @@
     request.data.requestId = @"123";
 
     id<IHPSDeviceMessage> data = [HpsTerminalUtilities BuildRequest:request.JSONString withFormat:format];
-
+    NSLog(@"request json = \n  : %@", [request JSONString]);
     [self.interface send:data andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -221,9 +298,12 @@
     request.data.command = UPA_MSG_ID_toString[ UPA_MSG_ID_RESET ];
     request.data.EcrId = @"13";
     request.data.requestId = @"123";
+    request.data.data = [[HpsUpaData alloc] init];
+    request.data.data.params = [[HpsUpaParams alloc] init];
+    request.data.data.params.displayOption = @"1";
 
     id<IHPSDeviceMessage> data = [HpsTerminalUtilities BuildRequest:request.JSONString withFormat:format];
-
+    NSLog(@"request json = \n  : %@", [request JSONString]);
     [self.interface send:data andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -275,35 +355,39 @@
 -(void)processTransactionWithJSONString:(NSString*)HpsUpaRequestString withResponseBlock:(void(^)(id <IHPSDeviceResponse>, NSString*, NSError*))responseBlock
 {
     id<IHPSDeviceMessage> request = [HpsTerminalUtilities BuildRequest:HpsUpaRequestString withFormat:format];
-    NSLog(@"request json = \n  : %@", HpsUpaRequestString);
-    [self.interface send:request andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
-        if (error) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                responseBlock(nil, [data toString], error);
-            });
-            return;
-        }
+        NSLog(@"request json = \n  : %@", HpsUpaRequestString);
+        [self.interface send:request andUPAResponseBlock:^(JsonDoc *data, NSError *error) {
+            if (error) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    responseBlock(nil, [data toString], error);
+                });
+                return;
+            }
 
-        //done
-        NSString *dataview = [data toString];
-        NSLog(@"response json = \n  : %@", dataview);
-        HpsUpaResponse *response;
+            //done
+            NSString *dataview = [data toString];
+            NSLog(@"response json = \n  : %@", dataview);
+            HpsUpaResponse *response;
 
-        @try {
-            //parse data
+            @try {
+                //parse data
+                response = [[HpsUpaResponse alloc]initWithJSONDoc:data];
 
-            response = [[HpsUpaResponse alloc]initWithJSONDoc:data];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    responseBlock(response, [data toString], nil);
+                });
+            } @catch (GatewayException *exception) {
+                NSMutableDictionary *userInfo = [NSMutableDictionary dictionary];
+                if (exception.rawResponse) userInfo[@"rawResponse"] = exception.rawResponse;
 
-            dispatch_async(dispatch_get_main_queue(), ^{
-                responseBlock(response, [data toString], nil);
-            });
-        } @catch (NSException *exception) {
-            NSDictionary *userInfo = @{NSLocalizedDescriptionKey: [exception description]};
-            NSError *error = [NSError errorWithDomain:self->errorDomain
-                                                 code:CocoaError
-                                             userInfo:userInfo];
+                userInfo[NSLocalizedDescriptionKey] = exception.reason ?: @"Gateway Error";
 
-            dispatch_async(dispatch_get_main_queue(), ^{
+                // Always use a non-nil domain string
+                NSError *error = [NSError errorWithDomain:self->errorDomain
+                                                     code:CocoaError
+                                                 userInfo:userInfo];
+
+                dispatch_async(dispatch_get_main_queue(), ^{
                 responseBlock(nil, [data toString], error);
             });
         }
@@ -311,6 +395,7 @@
 }
 #pragma mark -
 #pragma mark EOD
+
 -(void)processEndOfDayWithEcrId:(NSString*)ecrId requestId:(NSString*)requestId response:(void(^)(HpsUpaResponse*, NSError*))responseBlock
 {
     HpsUpaRequest* request = [[HpsUpaRequest alloc] init];

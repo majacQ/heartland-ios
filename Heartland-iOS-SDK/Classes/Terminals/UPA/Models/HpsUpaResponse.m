@@ -1,6 +1,7 @@
 #import "HpsUpaResponse.h"
 #import "HpsHpaSharedParams.h"
 #import "NSString+HexParser.h"
+#import "GatewayException.h"
 
 @interface HpsUpaResponse()
 
@@ -49,6 +50,30 @@ static int IsFieldEnable;
             self.deviceResponseCode = [cmdResult getValueAsString:@"errorCode"];
             self.deviceResponseMessage = [cmdResult getValueAsString:@"errorMessage"];
         }
+        
+        if ([self.result isEqualToString:@"Failed"]) {
+
+                    NSDictionary *fullMessage = nil;
+                    NSString *jsonString = [response toString];
+                    if (jsonString.length > 0) {
+                        NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                        NSError *err = nil;
+
+                        id parsed = [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                    options:0
+                                                                      error:&err];
+                        if (!err && [parsed isKindOfClass:[NSDictionary class]]) {
+                            fullMessage = parsed;
+                        }
+                    }
+
+                    // Absolute safety fallback
+                    if (!fullMessage) {
+                        fullMessage = @{ @"note": @"raw response unavailable" };
+                    }
+                    self.exceptionGateway = [[GatewayException alloc] exceptionWithMessage:@"Unexpected Device Response"
+                                                    rawResponse:fullMessage];
+            }
     }
 
     if (![cmdData has:@"data"]) {
@@ -63,6 +88,8 @@ static int IsFieldEnable;
     self.upaOsVersion = [data getValueAsString:@"OsVersion"];
     self.upaEmvSdkVersion = [data getValueAsString:@"EmvSdkVersion"];
     self.upaContactlessSdkVersion = [data getValueAsString:@"CTLSSdkVersion"];
+    self.scanData = [data getValueAsString:@"scanData"];
+    self.signatureData = [data getValueAsString:@"signatureData"];
 
     if ([data has:@"host"]) {
         JsonDoc* host = [data get:@"host"];
