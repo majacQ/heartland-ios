@@ -1,7 +1,7 @@
 import XCTest
 @testable import Heartland_iOS_SDK
 
-final class HpsUPACreditTests: XCTestCase {
+final class UPACreditDuplicateTests: XCTestCase {
 
     var device: HpsUpaDevice!
     private var builder: HpsUpaSaleBuilder?

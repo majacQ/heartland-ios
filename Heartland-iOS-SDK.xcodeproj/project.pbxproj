@@ -68,6 +68,12 @@
 		14F88D612A02F6EC009E821B /* HpsUpaCAEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14F88D602A02F6EC009E821B /* HpsUpaCAEnums.swift */; };
 		284B5CA72A66F1660067AF0D /* HpsUpaDeleteSaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = 284B5CA62A66F1660067AF0D /* HpsUpaDeleteSaf.swift */; };
 		28FCAA142A68528D0040B118 /* HpsUpaDeleteSafResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28FCAA132A68528D0040B118 /* HpsUpaDeleteSafResponse.swift */; };
+		659CE20A2F1641DD00BC1D97 /* GatewayException.h in Headers */ = {isa = PBXBuildFile; fileRef = 659CE2092F1641CF00BC1D97 /* GatewayException.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659CE20C2F16420300BC1D97 /* GatewayException.m in Sources */ = {isa = PBXBuildFile; fileRef = 659CE20B2F1641FE00BC1D97 /* GatewayException.m */; };
+		C718CD572ED6EECD00B5707D /* HpsPaxHostResponseCredential.m in Sources */ = {isa = PBXBuildFile; fileRef = C718CD562ED6EECD00B5707D /* HpsPaxHostResponseCredential.m */; };
+		C718CD5A2ED6F60700B5707D /* HpsPaxHostResponseCredential.h in Headers */ = {isa = PBXBuildFile; fileRef = C718CD542ED6EEB600B5707D /* HpsPaxHostResponseCredential.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C7CB24A42EEC6D0D00D80770 /* UpaScanBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB24A22EEC6D0D00D80770 /* UpaScanBuilder.swift */; };
+		C7CB24A52EEC6D0D00D80770 /* UpaScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB24A02EEC6D0D00D80770 /* UpaScan.swift */; };
 		DD2409302991688C00597A23 /* HpsUpaStartCardResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD24092F2991688C00597A23 /* HpsUpaStartCardResponse.swift */; };
 		DD37C2E12AE079E7003891D7 /* TapToPayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37C2E02AE079E7003891D7 /* TapToPayView.swift */; };
 		DD37C2E32AE07C69003891D7 /* TapToPayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37C2E22AE07C69003891D7 /* TapToPayViewModel.swift */; };
@@ -605,6 +611,12 @@
 		14F88D602A02F6EC009E821B /* HpsUpaCAEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUpaCAEnums.swift; sourceTree = "<group>"; };
 		284B5CA62A66F1660067AF0D /* HpsUpaDeleteSaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUpaDeleteSaf.swift; sourceTree = "<group>"; };
 		28FCAA132A68528D0040B118 /* HpsUpaDeleteSafResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUpaDeleteSafResponse.swift; sourceTree = "<group>"; };
+		659CE2092F1641CF00BC1D97 /* GatewayException.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GatewayException.h; sourceTree = "<group>"; };
+		659CE20B2F1641FE00BC1D97 /* GatewayException.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GatewayException.m; sourceTree = "<group>"; };
+		C718CD542ED6EEB600B5707D /* HpsPaxHostResponseCredential.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HpsPaxHostResponseCredential.h; sourceTree = "<group>"; };
+		C718CD562ED6EECD00B5707D /* HpsPaxHostResponseCredential.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HpsPaxHostResponseCredential.m; sourceTree = "<group>"; };
+		C7CB24A02EEC6D0D00D80770 /* UpaScan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpaScan.swift; sourceTree = "<group>"; };
+		C7CB24A22EEC6D0D00D80770 /* UpaScanBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpaScanBuilder.swift; sourceTree = "<group>"; };
 		DD24092F2991688C00597A23 /* HpsUpaStartCardResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUpaStartCardResponse.swift; sourceTree = "<group>"; };
 		DD37C2E02AE079E7003891D7 /* TapToPayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayView.swift; sourceTree = "<group>"; };
 		DD37C2E22AE07C69003891D7 /* TapToPayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayViewModel.swift; sourceTree = "<group>"; };
@@ -1221,6 +1233,23 @@
 			path = AppCanada;
 			sourceTree = "<group>";
 		};
+		C7CB24A12EEC6D0D00D80770 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB24A02EEC6D0D00D80770 /* UpaScan.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		C7CB24A32EEC6D0D00D80770 /* ScanBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				C7CB24A12EEC6D0D00D80770 /* Model */,
+				C7CB24A22EEC6D0D00D80770 /* UpaScanBuilder.swift */,
+			);
+			path = ScanBuilder;
+			sourceTree = "<group>";
+		};
 		DD37C2DD2AE079B4003891D7 /* TapToPay */ = {
 			isa = PBXGroup;
 			children = (
@@ -1478,6 +1507,7 @@
 		DDFF33552937AF4200C2D1D1 /* Builders */ = {
 			isa = PBXGroup;
 			children = (
+				C7CB24A32EEC6D0D00D80770 /* ScanBuilder */,
 				14F88D592A029BEF009E821B /* AppCanada */,
 				DDFF335E2937AF4200C2D1D1 /* HpsUpaAdjustBuilder.h */,
 				DDFF33572937AF4200C2D1D1 /* HpsUpaAdjustBuilder.m */,
@@ -1685,6 +1715,8 @@
 				DDFF33BE2937AF4200C2D1D1 /* HpsPaxTraceRequest.m */,
 				DDFF33C52937AF4200C2D1D1 /* HpsPaxTraceResponse.h */,
 				DDFF33E32937AF4200C2D1D1 /* HpsPaxTraceResponse.m */,
+				C718CD542ED6EEB600B5707D /* HpsPaxHostResponseCredential.h */,
+				C718CD562ED6EECD00B5707D /* HpsPaxHostResponseCredential.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1909,6 +1941,8 @@
 		DDFF346F2937AF4200C2D1D1 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				659CE20B2F1641FE00BC1D97 /* GatewayException.m */,
+				659CE2092F1641CF00BC1D97 /* GatewayException.h */,
 				DDFF36DE2937B6FC00C2D1D1 /* GlobalMobileSDK */,
 				DDFF34702937AF4200C2D1D1 /* JsonDoc.h */,
 				DDFF34712937AF4200C2D1D1 /* HpsEnums.h */,
@@ -2183,6 +2217,7 @@
 				DDFF36972937AF4400C2D1D1 /* HpsPayItem.h in Headers */,
 				DDFF357B2937AF4300C2D1D1 /* HpsPaxCreditSaleBuilder.h in Headers */,
 				DDFF35AF2937AF4300C2D1D1 /* HpsPaxEcomSubGroup.h in Headers */,
+				C718CD5A2ED6F60700B5707D /* HpsPaxHostResponseCredential.h in Headers */,
 				DDFF35502937AF4300C2D1D1 /* HpsConnectionConfig.h in Headers */,
 				DDFF36BB2937AF4400C2D1D1 /* HpsEmployee.h in Headers */,
 				DDFF35BF2937AF4300C2D1D1 /* HpsDeviceProtocols.h in Headers */,
@@ -2264,6 +2299,7 @@
 				DDFF36502937AF4400C2D1D1 /* NSObject+ObjectMap.h in Headers */,
 				DDFF362B2937AF4400C2D1D1 /* JsonDoc.h in Headers */,
 				DDFF36042937AF4300C2D1D1 /* Field.h in Headers */,
+				659CE20A2F1641DD00BC1D97 /* GatewayException.h in Headers */,
 				DDFF357F2937AF4300C2D1D1 /* HpsPaxLocalDetailReportBuilder.h in Headers */,
 				DDFF367C2937AF4400C2D1D1 /* HpsPosRequest.h in Headers */,
 				DDFF35762937AF4300C2D1D1 /* HpsPaxCreditAdjustBuilder.h in Headers */,
@@ -2508,9 +2544,12 @@
 				DDFF359B2937AF4300C2D1D1 /* HpsPaxAmountResponse.m in Sources */,
 				DDFF35F12937AF4300C2D1D1 /* HpsHpaHeartBeatResponse.m in Sources */,
 				DDFF36152937AF4400C2D1D1 /* HpsHpaSharedParams.m in Sources */,
+				C7CB24A42EEC6D0D00D80770 /* UpaScanBuilder.swift in Sources */,
+				C7CB24A52EEC6D0D00D80770 /* UpaScan.swift in Sources */,
 				DDFF36A42937AF4400C2D1D1 /* HpsPayrollRecord.m in Sources */,
 				DDFF35A22937AF4300C2D1D1 /* HpsPaxCommercialRequest.m in Sources */,
 				14864ED32C886BF200B0E4F3 /* ExtView.swift in Sources */,
+				C718CD572ED6EECD00B5707D /* HpsPaxHostResponseCredential.m in Sources */,
 				DDFF370F2937B6FD00C2D1D1 /* GMSCreditCaptureBuilder.swift in Sources */,
 				DDFF36232937AF4400C2D1D1 /* HpsWiseCubeCreditSaleBuilder.swift in Sources */,
 				DDFF360C2937AF4400C2D1D1 /* SummaryResponse.m in Sources */,
@@ -2728,6 +2767,7 @@
 				DDFF35522937AF4300C2D1D1 /* HpsC2xCreditSaleBuilder.swift in Sources */,
 				DDFF370D2937B6FD00C2D1D1 /* GMSCreditAdjustBuilder.swift in Sources */,
 				DDFF35582937AF4300C2D1D1 /* HpsC2xCreditReversalBuilder.swift in Sources */,
+				659CE20C2F16420300BC1D97 /* GatewayException.m in Sources */,
 				DDFF352B2937AF4300C2D1D1 /* HpsUpaReversalBuilder.m in Sources */,
 				DDFF37052937B6FC00C2D1D1 /* ReversalReasonCode.swift in Sources */,
 				DDFF355A2937AF4300C2D1D1 /* HpsC2xDevice.swift in Sources */,
@@ -2800,6 +2840,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -2864,6 +2905,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2894,6 +2936,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -2927,6 +2970,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_BITCODE = NO;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";

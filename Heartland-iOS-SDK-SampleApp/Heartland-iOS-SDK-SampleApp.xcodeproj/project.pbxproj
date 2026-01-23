@@ -25,7 +25,8 @@
 		2896FA732A44AA930076BBFC /* PayAppCanadaTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2896FA722A44AA930076BBFC /* PayAppCanadaTransaction.swift */; };
 		43233D002E356AC300DBB5B6 /* BBPOSCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43233CFF2E356AAF00DBB5B6 /* BBPOSCreditTests.swift */; };
 		438C3D1D2EABBCCB00E77CCA /* BBPOSDuplicateTransactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438C3D1C2EABBCCB00E77CCA /* BBPOSDuplicateTransactionTests.swift */; };
-		C718CD5D2ED740AF00B5707D /* HpsUPACreditDuplicateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C718CD5B2ED740AF00B5707D /* HpsUPACreditDuplicateTests.swift */; };
+		C7CB24932EE6B2E100D80770 /* HpsUpaCreditTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB24922EE6B2E100D80770 /* HpsUpaCreditTests.swift */; };
+		C7CB24982EE8346900D80770 /* UPAAdminTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CB24972EE8346900D80770 /* UPAAdminTests.swift */; };
 		DD37C2E72AE0829E003891D7 /* TapToPayHostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37C2E62AE0829E003891D7 /* TapToPayHostedViewController.swift */; };
 		DD37C2F72B165674003891D7 /* TokenServiceHostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD37C2F62B165674003891D7 /* TokenServiceHostedViewController.swift */; };
 		DD49DDB4296DDAE100EBD526 /* HpsUPALineItemDisplayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD49DDB3296DDAE000EBD526 /* HpsUPALineItemDisplayTests.swift */; };
@@ -121,7 +122,9 @@
 		2896FA722A44AA930076BBFC /* PayAppCanadaTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayAppCanadaTransaction.swift; sourceTree = "<group>"; };
 		43233CFF2E356AAF00DBB5B6 /* BBPOSCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBPOSCreditTests.swift; sourceTree = "<group>"; };
 		438C3D1C2EABBCCB00E77CCA /* BBPOSDuplicateTransactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BBPOSDuplicateTransactionTests.swift; sourceTree = "<group>"; };
-		C718CD5B2ED740AF00B5707D /* HpsUPACreditDuplicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUPACreditDuplicateTests.swift; sourceTree = "<group>"; };
+		C712FA232EC3698C00C18365 /* UPACreditDuplicateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPACreditDuplicateTests.swift; sourceTree = "<group>"; };
+		C7CB24922EE6B2E100D80770 /* HpsUpaCreditTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HpsUpaCreditTests.swift; sourceTree = "<group>"; };
+		C7CB24972EE8346900D80770 /* UPAAdminTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UPAAdminTests.swift; sourceTree = "<group>"; };
 		DD37C2E62AE0829E003891D7 /* TapToPayHostedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapToPayHostedViewController.swift; sourceTree = "<group>"; };
 		DD37C2F62B165674003891D7 /* TokenServiceHostedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenServiceHostedViewController.swift; sourceTree = "<group>"; };
 		DD49DDB3296DDAE000EBD526 /* HpsUPALineItemDisplayTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HpsUPALineItemDisplayTests.swift; sourceTree = "<group>"; };
@@ -246,7 +249,9 @@
 		C718CD5C2ED740AF00B5707D /* UPA */ = {
 			isa = PBXGroup;
 			children = (
-				C718CD5B2ED740AF00B5707D /* HpsUPACreditDuplicateTests.swift */,
+				C712FA232EC3698C00C18365 /* UPACreditDuplicateTests.swift */,
+				C7CB24922EE6B2E100D80770 /* HpsUpaCreditTests.swift */,
+				C7CB24972EE8346900D80770 /* UPAAdminTests.swift */,
 			);
 			path = UPA;
 			sourceTree = "<group>";
@@ -499,6 +504,7 @@
 				DD713FC72948DC7500514143 /* Hps_Hpa_Admin_Test.m in Sources */,
 				DD713FB42948DC7500514143 /* HpsTableServicesTest.m in Sources */,
 				DD713FB62948DC7500514143 /* Hps_Hpa_Gift_Test.m in Sources */,
+				C7CB24982EE8346900D80770 /* UPAAdminTests.swift in Sources */,
 				438C3D1D2EABBCCB00E77CCA /* BBPOSDuplicateTransactionTests.swift in Sources */,
 				DD713FBC2948DC7500514143 /* Hps_UPA_VRF_Test.m in Sources */,
 				DD713FC52948DC7500514143 /* Hps_Pax_Batch_Tests.m in Sources */,
@@ -523,11 +529,11 @@
 				DD713FC92948DC7500514143 /* Hps_UPA_Admin_Test.m in Sources */,
 				DD49DDB4296DDAE100EBD526 /* HpsUPALineItemDisplayTests.swift in Sources */,
 				DD713FC32948DC7500514143 /* Hps_Hpa_Debit_Test.m in Sources */,
-				C718CD5D2ED740AF00B5707D /* HpsUPACreditDuplicateTests.swift in Sources */,
 				DD713FAF2948DC7500514143 /* Hps_C2X_Credit_Test.m in Sources */,
 				DD713FB32948DC7500514143 /* Heartland_GatewayTests.m in Sources */,
 				DD713FBF2948DC7500514143 /* Hps_Hpa_Credit_Test.m in Sources */,
 				DD713FB52948DC7500514143 /* HpsPayRollTests.m in Sources */,
+				C7CB24932EE6B2E100D80770 /* HpsUpaCreditTests.swift in Sources */,
 				DD713FBB2948DC7500514143 /* Hps_Hpa_EOD_Test.m in Sources */,
 				DD713FC62948DC7500514143 /* Hps_UPA_Credit_Test.m in Sources */,
 				DD713FC82948DC7500514143 /* Hps_Pax_Report_test.m in Sources */,
@@ -612,6 +618,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -673,6 +680,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				EXCLUDED_ARCHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -781,6 +789,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 264BX5RC4N;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -810,6 +819,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 264BX5RC4N;
+				EXCLUDED_ARCHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
